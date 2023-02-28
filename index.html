@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Form</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="./script.js"></script> -->
+
+</head>
+<body>
+    <div class="container" >
+<form id="form" onsubmit="return validation()">
+<h1>Sign-up form</h1>
+
+<div class="input-control">
+
+    <label for="firstName">firstName</label>
+    <input type="text" name="firstName" id="first-Name" >
+    <span class="check" id="first" ></span>
+</div>
+
+<div class="input-control">
+
+    <label for="lastName">lastName</label>
+    <input type="text" name="lastName" id="last-Name">
+    <span class="check" id="second" ></span>
+</div>
+<div class="input-control">
+
+    <label for="email">email</label>
+    <input type="text" name="email" id="email">
+    <span id="third" class="check" ></span>
+</div>
+
+<div class="input-control">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="pass-word">
+    <span id="fourth" class="check" ></span>
+   
+</div>
+
+<div class="input-control">
+
+    <label  for="country">Country</label>
+    <select class="drop-down" name="country" id="country">
+
+<option  value="USA">USA</option>
+<option value="France">France</option>
+<option value="China">China</option>
+<option value="Canada">Canada</option>
+
+    </select>
+    
+</div>
+<div class="input-control">
+
+    <label for="firstName">Confirm Password</label>
+    <input type="password" name="password2" id="password2">
+    <span id="fifth" class="check" ></span>
+</div>
+<button type="submit">Sign-Up</button>
+</form>
+
+    </div>
+<script  type="text/javascript">
+const form=document.getElementById("form").value
+const firstName=document.getElementById("first-Name").value
+    const lastName=document.getElementById("last-Name").value
+    const email=document.getElementById("email").value
+    const password=document.getElementById("pass-word").value
+    const password2=document.getElementById("password2").value
+
+
+
+form&&form.addEventListener('submit',(event)=>{
+event.preventDefault()
+validate()
+    })
+const isEmail=(email)=>{
+
+var atSymbol=email.indexOf("@")
+if(atSymbol<1)return false
+var dot=email.lastIndexOf(".")
+if(dot<=atSymbol+2)return false
+if(dot===email.length-1) return false;
+return true
+
+
+
+
+}
+
+//define validate function to remove space if put in form and sbmit
+    const validate=()=>{
+        const firstName=firstName.value.trim() 
+    const lastName=lastName.value.trim() 
+    const email=email.value.trim() 
+    const password=password.value.trim() 
+    const password2=password2.value.trim() 
+
+    }
+
+   //validate userName
+   if(firstName===""){
+    setErrorMsg(firstName,"First Name cannot be blank")
+   }else if(firstName<=3){
+    setErrorMsg(firstName,"Name must be atleast 3 characters")
+   }else{
+    setSuccessMsg(firstName)
+   }
+
+   //validate last name
+   if(lastName===""){
+    setErrorMsg(lastName,"last Name cannot be blank")
+   }else if(lastName<=3){
+    setErrorMsg(lastName,"lastName must be atleast 3 characters")
+   }else{
+    setSuccessMsg(lastName)
+   }
+
+   //validate email
+   if(email===""){
+    setErrorMsg(email,"empty write email")
+   }else if(!isemail(email)){
+    setErrorMsg(email,"Not valid email")
+   }else{
+    setSuccessMsg(email)
+   }
+
+//validate password
+   if(password===""){
+    setErrorMsg(password,"Password cannot be blank")
+   }else if(password<=5){
+    setErrorMsg(password,"atleast 5 characters")
+   }else{
+    setSuccessMsg(password)
+   }
+
+   //validate confirm password
+   if(password2===""){
+    setErrorMsg(password2,"Confirm your password")
+   }else if(password!==password2){
+    setErrorMsg(password2,"Not Matched password")
+   }else{
+    setSuccessMsg(password2)
+   }
+
+
+   function setErrorMsg(input,errormsgs){
+const formControl=input.parentElement
+const small=formControl.querrySelector('span')
+small.innerText=errormsgs;
+
+
+   }
+
+   function setSuccessMsg(input){
+    const formControl=input.parentElement
+    console.log("sucess")
+   }
+</script>
+    
+</body>
+
+</html>
